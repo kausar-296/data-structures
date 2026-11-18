@@ -1,0 +1,45 @@
+public static class MakeNode {
+    //purpose of this class is to create a node
+    int val;
+    MakeNode next;
+    //the data type of "next" is "MakeNode" to move to the next node.
+    MakeNode(int x) {
+        /*constructor to initialize node value
+        every node needs two fields. 
+        user defined nodes are used.*/
+        val = x;
+        /*"x" is the initial value in the data field.
+        the "x" value is passed into the function.*/
+        next = null;
+        //initially, the address field has the value "null".
+    }
+}
+
+public class LeetCode876 {
+    MakeNode slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    return slow;
+}
+
+
+
+
+
+
+
+//Definition for singly-linked list.
+public class ListNode {
+      int val;
+      ListNode next;
+      ListNode() {}
+      ListNode(int val) { this.val = val; }
+      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        
+    }
+}
