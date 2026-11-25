@@ -32,6 +32,16 @@ class BinarySearchTreeInsertion {
         temp.left = temp.right = null;
         return temp;
     }
+
+
+
+
+
+
+
+
+
+
     public static void main(String[] arg) {
         Scanner sc = new Scanner(System.in);
         Node root = null;
@@ -47,8 +57,28 @@ class BinarySearchTreeInsertion {
         System.out.println("\nEnter the key to search:");
         int key = sc.nextInt();
         System.out.println(search(root, key));
+        System.out.println("\nEnter the level to print:");
+        int find = sc.nextInt();
+        System.out.println("Nodes at level " + find + ":");
+        printGivenLevel(root, 1, find);
+        System.out.println("\nEnter two nodes to find their LCA:");
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        Node lca= LCA(root, n1, n2);
+        if(lca != null) {
+            System.out.println("LCA of " + n1 + " and " + n2 + " is: " + lca.data);
+        } else {
+            System.out.println("LCA not found.");
+        }
         sc.close();
     }
+
+
+
+
+
+
+
     static Node insert(Node root, int data) {
         if(root == null) {
             root = newNode(data);
@@ -76,5 +106,34 @@ class BinarySearchTreeInsertion {
             return true;
         }
         return (root.data < key) ? search(root.right, key) : search(root.left, key);
+    }
+    static void printGivenLevel(Node root, int level, int find) {
+        if(root == null) {
+            System.out.print("No nodes at this level.");
+            return;
+        }
+        if(level == find) {
+            System.out.print(root.data + " ");
+        }
+        else if(level > 1) {
+            printGivenLevel(root.left, level-1, find);
+            printGivenLevel(root.right, level-1, find);
+        }
+    }
+    /* FIND LCA (LOWEST COMMON ANCESTOR):
+    Compare both nodes woth root node to see if they are less than or greater than the root 
+    if both less, move to left; if both greater, move to right; if one is less and the other is greater, the root is the LCA*/
+
+    static Node LCA(Node root, int n1, int n2) {
+        if(root == null) {
+            return null;
+        }
+        if(root.data > n1 && root.data > n2) {
+            return LCA(root.left, n1, n2);
+        }
+        if(root.data < n1 && root.data < n2) {
+            return LCA(root.right, n1, n2);
+        }
+        return root;
     }
 }
