@@ -70,6 +70,7 @@ class BinarySearchTreeInsertion {
         } else {
             System.out.println("LCA not found.");
         }
+        System.out.println("\nSize of the BST: " + size(root));
         sc.close();
     }
 
@@ -120,6 +121,7 @@ class BinarySearchTreeInsertion {
             printGivenLevel(root.right, level-1, find);
         }
     }
+
     /* FIND LCA (LOWEST COMMON ANCESTOR):
     Compare both nodes woth root node to see if they are less than or greater than the root 
     if both less, move to left; if both greater, move to right; if one is less and the other is greater, the root is the LCA*/
@@ -135,5 +137,17 @@ class BinarySearchTreeInsertion {
             return LCA(root.right, n1, n2);
         }
         return root;
+    }
+
+    /* FIND SIZE OF TREE:*/
+
+    static int size(Node root) {
+        if(root == null) {
+            System.out.println("Size of tree is 0");
+            return 0;
+        }
+        else {
+            return (size(root.left) + 1 + size(root.right));
+        }
     }
 }
